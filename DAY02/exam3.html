@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <!-- src 에는 사진파일이 위치한 경로를 넣어주면 된다.-->
+     <!-- *추후에 백엔드(자바/파이썬)서버 경로 -->
+    <img src="../고슴도치.jfif"><br />
+    <img src="download.jfif">
+
+    <!--autoplay는 정책상 안됨 하지만 autoplay와 muted를 같이 쓰면 실행 가능-->
+    <!-- 추후에 JS를 이용한 동적처리-->
+    <audio src="audio.mp3" 
+    controls
+    autoplay
+    muted> 
+    </audio><br />
+    <video 
+        src="video.mp4"
+        controls
+        autoplay
+        muted>
+    </video>
+    <!-- 유튜브에서 [퍼가기]-->
+     <iframe width="560" height="315" src="https://www.youtube.com/embed/q-ZFpbrokMg?si=W7_K41kEMI5QJJxJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+     <!-- 구글 지도 [퍼가기]-->
+     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.602295727813!2d126.89589857631972!3d37.4701110296507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b61da24e21613%3A0x61610888c0bf5b37!2z7ISc7Jq46riI7LKc7Jqw7LK06rWt!5e0!3m2!1sko!2skr!4v1766545018341!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+     <!-- iframe은 커스텀을 제공하지 않음. -->
+</body>
+</html>
