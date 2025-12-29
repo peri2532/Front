@@ -1,0 +1,84 @@
+*{
+  font-size : 10px;
+  font-family: '맑은 고딕';  
+} /* 기본 전체 설정 */
+
+@font-face {
+    font-family: 'SchoolSafetyPoster';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/HakgyoansimPosterB.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+} /* 학교안심 외부 폰트 */
+.header{
+    text-align: center;
+}
+.img{
+    text-align: center;
+}
+.rogo{
+    font-size : 20px;
+    font-weight: bold;
+    text-align: center;
+} /*로고 사이즈 배치 */
+
+.info{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'SchoolSafetyPoster';
+} /*설문자 정보*/
+
+.name{
+    font-size : 20px;
+    font-weight: bold;
+    color : #FFFF00;
+} /* 이름 */
+
+.sex_man{
+    color : blue;
+} /* 성별 선택 */
+
+.sex_girl{
+    color : rgb(255,0,0);
+}
+
+.student{
+    font-size : 20px;
+    font-weight: bold;
+    text-decoration: underline;
+} /* 전공생 여부 */
+
+.path{
+    font-size : 20px;
+    font-weight: bold;
+    text-decoration: underline;
+} /* 알게된 경로*/
+
+.bucam{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'SchoolSafetyPoster';
+} /*부트캠프 사전조사*/
+
+.learn{
+    font-size : 20px;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px #000000;
+} /*알고있는 cs지식*/
+
+.dream{
+    font-size : 20px;
+    font-weight: bold;
+} /*관심분야*/
+
+.text{
+    font-size : 20px;
+    font-weight: bold;
+} /*건의사항*/
+
+.submit{
+    font-size : 15px;
+    font-weight: bold;
+    font-family: '궁서';
+} /*제출버튼*/
