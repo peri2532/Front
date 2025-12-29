@@ -31,7 +31,8 @@ console.log(`${결과}`);
 let score = prompt("점수를 입력하세요: ");
 let result = (score>=90 ? "A" : score>=80 ? "B" : "C");
 console.log(`점수: ${result}`);
-document.write(`<h3>${result}</h3>`);
+//document.write(`<h3>${result}</h3>`);
+document.querySelector("h2").innerHTML = result;
 
 //문제 7
 let age = prompt("나이를 입력하세요: ");

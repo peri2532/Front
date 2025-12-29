@@ -58,4 +58,5 @@ let name2 = prompt("이름을 입력하세요: ");
 let result1 = name1 =="유재석" ? `${name1}(방장)` : `${name1}`;
 let result2 = name2 =="유재석" ? `${name2}(방장)` : `${name2}`;
 document.write(`<ol><li>${result1}</li><ol>`);
-
+document.write(`<ol><li>${result2}</li><ol>`);
+//documetnt.write(`<h3>실습8 : ${result} </h3>`)
