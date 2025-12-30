@@ -1,0 +1,21 @@
+.per{
+    color: blue;;
+}
+
+.all{
+    margin: 20px; padding: 20px;
+    text-align: center;
+    box-shadow:3px 3px 3px 3px rgb(255, 206, 217); 
+}
+
+.admin input,.pwd input{
+    border-radius:5px;
+    margin: 5px;
+}
+
+.submit button{
+    border-radius:9px;
+    background-color: rgb(0, 0, 253);
+    color: white;
+    margin: 5px;
+}
