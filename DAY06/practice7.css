@@ -1,5 +1,10 @@
 body{
     margin: 0;
+     text-align: center; 
+    display: flex;
+    flex-direction: column;
+     align-items: center;
+     
 }
 .c{
     padding-top: 72px;
@@ -113,4 +118,8 @@ body{
     width: 980px;
     list-style: none;
     gap: 10px;
+}
+footer{
+    margin: 0px auto;
+    width: 980px;
 }

@@ -60,6 +60,7 @@ input[type="text"], input[type="password"], input[type="name"], select{
 }
 .성별{
     display: flex;
+    padding: 10px;
     
 }
 .남자,.여자,.direct{
@@ -75,7 +76,8 @@ input[type="text"], input[type="password"], input[type="name"], select{
 }
 .가입하기{
     display: block;
-    width: 194px;
+    width: 
+    px;
     background-color: green;
     color: white;
     border: none;
@@ -83,7 +85,7 @@ input[type="text"], input[type="password"], input[type="name"], select{
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
-    text-align: center; 
+    
 }
 a{
     color: blue;
@@ -104,4 +106,9 @@ a{
     font-size: 12px;
     color: #606770;
     margin-top: 10px;
+}
+.already,.가입하기{
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
 }
