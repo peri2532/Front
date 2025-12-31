@@ -1,0 +1,116 @@
+body{
+    margin: 0;
+}
+.c{
+    padding-top: 72px;
+    padding-bottom: 112px;
+    background-color: #f2f4f7;
+}
+.container{
+    margin: 0 auto;
+    width: 980px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.left{
+    display: inline-block;
+    width: 580px;
+    padding-right: 32px;
+    box-sizing: border-box;
+}
+.right{
+    display: inline-block;
+    vertical-align: top;
+    width: 396px;
+    right: 456px;
+}
+.logoContainer{
+    padding-top:112px;
+    padding-bottom:16px;
+}
+.logo{
+    height: 106px;
+    margin: -28px;
+}
+.logoDescription{
+    width: 500px;
+    margin-block-start:auto;
+    margin-block-end:auto;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 32px;
+}
+.form{
+    background-color: white;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(0, 0, 0, 0.1) 0px 8px 16px 0px;
+    padding-top:10px;
+    padding-bottom:24px;
+}
+.input{
+    border: 1px solid rgb(221, 223, 226);
+    border-radius: 6px;
+    width: 330px;
+    padding: 14px 16px;
+    font-size:17px;
+    margin: 6px;
+}
+.button{
+    padding: 0 16px;
+    font-size: 17px;
+    line-height: 48px;
+    color:white;
+    width: 332px;
+    border:none;
+    border-radius: 6px;
+    box-sizing: content-box;
+    font-weight: 600;
+    margin-top: 6px;
+}
+.smallButton{
+    width:auto;
+}
+.blue{
+    background-color:rgb(24, 119, 242);
+}
+.green{
+    background-color: #42b720;
+}
+.divider{
+    border-bottom: 1px solid #dadde1;
+    margin: 20px 16px;
+}
+.formText{
+    font-size:14px;
+    margin-top: 16px;
+    text-decoration: none;
+    color: #0866ff;
+}
+.rightBottom{
+    margin-top: 28px;
+    font-size: 14px;
+    text-align: center;
+}
+a:hover{
+    text-decoration: underline;
+}
+.bold{
+    font-weight: bold;
+}
+body{
+    margin: 0;
+}
+
+.language,.copy{
+    align-items: center;
+    color: rgb(115,115, 115);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    padding-top: 8px;
+    width: 980px;
+    list-style: none;
+    gap: 10px;
+}

@@ -1,0 +1,107 @@
+body{
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    align-items: center;
+    background-color: #f0f2f5;
+}
+.이미지{
+    width: 250px;
+    margin-bottom: 40px;
+}
+.all{
+    padding: 20px ;
+    border-radius: 8px;
+    width: 432px;
+    background-color: white;
+    text-align: left;
+
+}
+.헤더{
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.text1 h3{
+    font-size: 32px;
+    margin: 0;
+}
+input[type="text"], input[type="password"], input[type="name"], select{
+    width: 100%;
+    margin: 5px 0px;
+    border: 1px solid #dddfe2;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 11px;
+    background-color: #f5f6f7;
+    font-size: 14px;
+}
+.birthday, .gender{
+    font-size: 12px;
+    color: #606770;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+.생일{
+    display: flex;
+  
+}
+.생일 select{
+    margin-right: 5px;
+}
+.성함{
+    margin-right: 5px;
+}
+.이름{
+    display: flex;
+}
+.성별{
+    display: flex;
+    
+}
+.남자,.여자,.direct{
+    flex:1;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.남자,.여자{
+    margin-right: 5px;
+}
+.가입하기{
+    display: block;
+    width: 194px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center; 
+}
+a{
+    color: blue;
+    text-decoration: none;
+}
+.language,.copy{
+    align-items: center;
+    color: rgb(115,115, 115);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    padding-top: 8px;
+    width: 980px;
+    list-style: none;
+    gap: 10px;
+}
+.text3, .text4{
+    font-size: 12px;
+    color: #606770;
+    margin-top: 10px;
+}
