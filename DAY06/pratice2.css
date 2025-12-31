@@ -1,0 +1,33 @@
+body{
+    text-align: center; /* 하위 요소들 텍스트 가운데 정렬 */
+    display: flex; /* 하위 요소들의 배치방법 */
+    justify-content: center; /*flwx 요소들을 가로 정렬 방법 */
+     background-color: rgb(255, 192, 202);
+}
+.header{
+    border-radius: 20px;
+    border: 2px solid #eeeeee;
+    font-size: 20px;
+    font-weight: bold;
+    width: 300px;
+    margin: 25px;
+}
+.이미지> img{
+    width: 200px; height: 200px;  /* 정사각형 */
+    border-radius: 200px; /* 둥근 이미지 */
+    margin: 20px 0px;
+}
+
+.링크목록{
+    margin: 20px 0px;
+}
+.링크목록 > div{
+    background-color:skyblue;
+    padding: 20px 0px;
+    margin: 10px 0px;
+    border-radius: 10px;
+}
+a{
+    color: white;
+    text-decoration: none;
+}

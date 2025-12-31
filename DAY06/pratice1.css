@@ -1,0 +1,41 @@
+*{
+    border: 1px solid red;
+    padding: 5px;
+}
+.상품{
+    border:1px solid #eeeeee;
+    width: 300px;
+}
+
+.상품이미지 > img{
+    width: 295px;
+}
+
+.title{
+    border-top: 1px solid #eeeeee;
+    margin-top: 20px;
+    padding: 10px 0px;
+    font-size: 18px; 
+    font-weight: bold;
+} 
+.price{
+     font-size: 15px; 
+     font-weight: bold;
+     padding: 10px 0px;
+}
+
+.info{
+    padding: 10px 0px;
+    font-size: 13px;
+}
+.review-count , .review-score{
+    color: orange;
+}
+.review{
+    padding: 10px 0px;
+}
+
+.상품정보{
+    border-top: 1px solid #eeeeee;
+    padding: 5px 10px;
+}
