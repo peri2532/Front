@@ -52,7 +52,18 @@ for ( let 곱 = 1; 곱 <=9 ; 곱++){
 //[5] 배열과 반복문 관계: 배열 내 저장된 자료들은 인덱스가 존재한다. *인덱스란? 배열내 저장된 자료들의 순서번호 *0번 시작, 1씩 증가
 //반복문 초기값 과 배열의 인덱스= 0
 //반복문 조건문 과 배열명.length
-let ary = []; // 빈 배열 생성
-let a = prompt( "값 : "); ary.Push(a); // 변수명.push; 배열내자료추가
-let b = prompt( "값 : "); ary.Push(b); // 변수명.push; 배열내자료추가
-let c = prompt( "값 : "); ary.Push(c); // 변수명.push; 배열내자료추가
+// let ary = []; // 빈 배열 생성
+// let a = prompt( "값 : "); ary.Push(a); // 변수명.push; 배열내자료추가
+// let b = prompt( "값 : "); ary.Push(b); // 변수명.push; 배열내자료추가
+// let c = prompt( "값 : "); ary.Push(c); // 변수명.push; 배열내자료추가
+// vs count가 1부터 count는 3이하 까지 1씩 증가 하면서 값을 입력받아 변수에 저장한후에 배열 내 입력받은 값(변수의값) 추가한다.
+for( let count = 1; count <=3 ; count ++){let d = prompt("값 : "); any.push(d);}
+//출력
+// 배열 내 모든 자료들을 하나씩 출력
+console.log( ary[0]);
+console.log( ary[1]);
+console.log( ary[2]);
+//vs index <= ary.length - 1; 마지막 인덱스까지 뜻
+for(let index= 0; index <=Array.length - 1; index++){
+    console.log(ary[index]);
+}
