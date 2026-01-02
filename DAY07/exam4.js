@@ -47,8 +47,8 @@ let output = "";//출력할 문자열 선언
 
 for (let line = 1; line <= 5; line++) {
     for (let star = 1; star <= line; star++) {
-        output = output + "*";
-    } output = output + "/n";
+        output = output + "*"; //총 합계와 동일하게 문자열 출력
+    } output = output + "/n"; //줄바꿈처리
     console.log(output);
 }
 //예상하기 output,line 1일때, *\n
@@ -64,11 +64,13 @@ for (let i = 1; i <= 5; i++) {
         continue; //만약에 i(반복변수)가 3일때 반복문으로 이동<이하 코드 실행 안됨>
         console.log(i); // 1 2 4 5 , 1부터 3 제외한 5까지 출력됨 이유: 3일때 continue 만났기 때문에
     }//for end
-//(2) break
+//(2) break 
     for (let i = 1; i <= 5; i++) {
     if (i == 3) {break}//만약에 i(반복변수)가 3일때 반복문 탈출/종료<이하코드 실행안됨>
     console.log(i); // 1 2  , 1부터 5까지 출력하되 3이면 종류, 이유: 3일때 break 만났기 때문에
   }
-  //(3) 무한루프 :종료가 없는 계속되는 반복문
-  //방법1:for( ; ; ){console.log(1);}
-  //방법2:while(true){console.log(1);}
+//(3) 무한루프 :종료가 없는 계속되는 반복문
+//방법1:for( ; ; ){console.log(1);}
+//방법2:while(true){console.log(1);}
+//활용1 : for( ; ; ){let a = prompt("무한입력:");}
+//활용2 : for( ; ; ){let a = prompt("무한입력: "); if( b == "x") break;}
