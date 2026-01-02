@@ -1,0 +1,21 @@
+#header{
+    width: 1280px;;/*pc:1000~14000*/
+    margin: 0 auto;}
+/* 하위 요소들을 배치 하는방법*/
+#main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+}
+#content{
+    width:830px; ./*크기 px (픽셀/고정), %(비율/반응형) */
+}
+
+#sidebar{
+    width: 420px;
+}
+#footer{
+    background-color: gray;
+}

@@ -88,68 +88,93 @@ else{
 }
 
 //문제7
-let int1 = Number(prompt("정수1 입력: "));
-let int2 = Number(prompt("정수2 입력: "));
-let int3 = Number(prompt("정수3 입력: "));
+//참조: [1] a b c 비교: a>b , a>c , b>c 총 3번 , [2] 두 변수간의 값 교체/스왑
+//스왑: (1) 변수는 하나의 자료(값)만 저장한다. (2)연산은 하나씩 처리된다.
+//방법: 임시저장소 인 temp변수를 활용한다. a 와 b 의 값 스왑, temp= a; b=a; a=temp;
+//오름차순: 작은것->큰 것 / 과거 ->최근날짜 / abc/ 123/ ㄱㄴㄷ
+let a = Number(prompt(" a input : "));
+let b = Number(prompt(" b input : "));
+let c = Number(prompt(" c input : "));
+if(a>b){let temp= a; a=b; b=temp;}//비교1: 만약에 앞에 있는 값이 더 크면 스왑
+if(a>c){let temp= a; a=c; c=temp;}//비교2
+if(b>c){let temp= b; b=c; c=temp;}//비교3 : 반복문 이용하면 충분히 코드 줄일 수 있음.
+console.log(`오름차순: ${a} ${b} ${c}`);
 
-if(int1>=int2 && int1>=int3){
-    if(int2>=int3){
-        console.log(`${int3},${int2},${int1}`);
-    }
-    else{
-        console.log(`${int2},${int3},${int1}`);
-    }
-}
-else if(int2>=int1 && int2 >=int3){
-    if(int1>=int3){
-        console.log(`${int3},${int1},${int2}`);
-    }
-    else{
-        console.log(`${int1},${int3},${int2}`);
-    }
-}
-else{
-    if(int1>=int2){
-        console.log(`${int2},${int1},${int3}`);
-    }
-    else{
-        console.log(`${int1},${int2},${int3}`);
-    }
-}
+//내가 한 풀이
+// let int1 = Number(prompt("정수1 입력: "));
+// let int2 = Number(prompt("정수2 입력: "));
+// let int3 = Number(prompt("정수3 입력: "));
+
+// if(int1>=int2 && int1>=int3){
+//     if(int2>=int3){
+//         console.log(`${int3},${int2},${int1}`);
+//     }
+//     else{
+//         console.log(`${int2},${int3},${int1}`);
+//     }
+// }
+// else if(int2>=int1 && int2 >=int3){
+//     if(int1>=int3){
+//         console.log(`${int3},${int1},${int2}`);
+//     }
+//     else{
+//         console.log(`${int1},${int3},${int2}`);
+//     }
+// }
+// else{
+//     if(int1>=int2){
+//         console.log(`${int2},${int1},${int3}`);
+//     }
+//     else{
+//         console.log(`${int1},${int2},${int3}`);
+//     }
+// }
 
 //문제 8
-let R_S_P1 = Number(prompt("0(가위),1(바위),2(보)중 하나의 숫자를 입력하시오: "));
-let R_S_P2 = Number(prompt("0(가위),1(바위),2(보)중 하나의 숫자를 입력하시오: "));
-if(R_S_P1 == 0 && R_S_P2 == 1){
-    console.log("플레이어2 승리");
-}
-else if(R_S_P1 ==1 && R_S_P2 == 2){
-    console.log("플레이어2 승리");
-}
-else if(R_S_P1 ==2 && R_S_P2 == 0){
-    console.log("플레이어2 승리");
-}
-else if(R_S_P1 == 1 && R_S_P2 == 0){
+//플레이어 1 경우의수 : 승리(0==2 이거나 1==0 이거나 2==1) 무승부(0==0 1==1 2==2 ) 패배(그외)
+//플레이어 1 경우의 수 2: 공식: 플레이어1 ==(플레이어2 +1)%3 / 3(2+1)%3 ==0, 1(0+1)%3==1, 2(1+1)%3 ==2
+let player1 = Number(prompt("플레이어1:가위[0] 바위[1] 보[2] : "));
+let player2 = Number(prompt("플레이어1:가위[0] 바위[1] 보[2] : "));
+//방법1: if(player1 ==0&&player2 ==2 ||player1 == 1 && player2 ==0 || player1 == 2 && player2 ==1){
+if(player1 ==(player2 + 1) % 3) {// 나머지 연산
     console.log("플레이어1 승리");
-}
-else if(R_S_P1 ==2 && R_S_P2 == 1){
-    console.log("플레이어1 승리");
-}
-else if(R_S_P1 ==0 && R_S_P2 == 2){
-    console.log("플레이어1 승리");
-}
-else if(R_S_P1==0 && R_S_P2 == 0){
+}else if (player== player2){
     console.log("무승부");
+}else{
+    confirm("플레이어2 승리");
 }
-else if(R_S_P1==1 && R_S_P2 == 1){
-    console.log("무승부");
-}
-else if(R_S_P1==2 && R_S_P2 == 2){
-    console.log("무승부");
-}
-else{
-    console.log("숫자를 바르게 입력하시오.");
-}
+// let R_S_P1 = Number(prompt("0(가위),1(바위),2(보)중 하나의 숫자를 입력하시오: "));
+// let R_S_P2 = Number(prompt("0(가위),1(바위),2(보)중 하나의 숫자를 입력하시오: "));
+// if(R_S_P1 == 0 && R_S_P2 == 1){
+//     console.log("플레이어2 승리");
+// }
+// else if(R_S_P1 ==1 && R_S_P2 == 2){
+//     console.log("플레이어2 승리");
+// }
+// else if(R_S_P1 ==2 && R_S_P2 == 0){
+//     console.log("플레이어2 승리");
+// }
+// else if(R_S_P1 == 1 && R_S_P2 == 0){
+//     console.log("플레이어1 승리");
+// }
+// else if(R_S_P1 ==2 && R_S_P2 == 1){
+//     console.log("플레이어1 승리");
+// }
+// else if(R_S_P1 ==0 && R_S_P2 == 2){
+//     console.log("플레이어1 승리");
+// }
+// else if(R_S_P1==0 && R_S_P2 == 0){
+//     console.log("무승부");
+// }
+// else if(R_S_P1==1 && R_S_P2 == 1){
+//     console.log("무승부");
+// }
+// else if(R_S_P1==2 && R_S_P2 == 2){
+//     console.log("무승부");
+// }
+// else{
+//     console.log("숫자를 바르게 입력하시오.");
+// }
 
 //문제9
 let carArray=['250어7142','142가7415', '888호8888'];
