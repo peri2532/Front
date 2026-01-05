@@ -1,0 +1,74 @@
+/*공통 css*/
+*{
+    box-sizing: border-box; /* 테두리까지 기본 사이즈 계산*/
+    padding: 0px;
+    margin: 0px;
+}
+a {
+    /* a마크업 기본 css 제거 */
+    text-decoration: none;
+    /* 밑줄 제거 */
+    color: black;
+    /*색상*/
+}
+li {
+    list-style-type: none;
+}
+
+/*                                   헤더                                   */
+#header{
+    width: 1280px; /* 가로 사이즈 */
+    margin: 0 auto; /* 구역 가로 가운데 정렬 */
+    display: flex; /* 하위 요소 배치 방법 */
+    justify-content: space-between; /* 양끝 여백없이 균등정렬*/
+    align-items: center; /* 세로 정렬 */
+}
+#header > .menu > ul{ /* #아이디 , .클래스 , 마크업 */
+    display: flex; justify-content: flex-end;
+}
+.main-menu > li{ 
+    font-size: 20px; font-weight: bold; 
+    margin: 10px 0px 30px 80px ; /* 바깥여백 : 위 오른쪽 아래 왼쪽 순서 */
+}
+#main-img > img {
+    width: 100%;
+}
+
+/*======================== [3] 본문 css======================== */
+
+#main{
+     width: 1280px; margin: 20px auto; 
+    display: flex; justify-content: space-between;
+}
+#main > .left-box , .right-box{
+    display: flex;
+  
+}   
+
+#content {
+    display: flex;
+    background-color: rgb(238,238,238);
+}
+#content > div >img{
+    width: 100%;
+}
+#content > .img1 , .img2 , .img3 , .img4{
+    width: 24%; /* 가로 사이즈 */
+    margin: 10px auto; /* 구역 가로 가운데 정렬 */
+    justify-content: space-between; /* 양끝 여백없이 균등정렬*/
+    align-items: center; /* 세로 정렬 */
+}
+#footer{
+    background-color: #05344e;
+    color: white; padding: 20px 0px;
+}
+
+.footer-inner{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.footer-info > .top-text{
+    display: flex;
+    margin-bottom: 20px;
+}
