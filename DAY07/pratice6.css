@@ -115,12 +115,22 @@ li {
 #footer {
     background-color: #2c2a29;
     color: white;
-    padding:15px 0px;
+    padding: 30px 0px; /* 위아래 여백을 조금 더 주어 여유롭게 설정 */
 }
 
-footer-inner {
-    display: flex;
-    justify-content: space-between;
+/* 1. 클래스 선택자 앞에 마침표(.)를 반드시 찍어야 합니다. */
+#footer-inner { 
+    display: flex; /* 로고와 주소 정보를 가로로 배치 */
+    justify-content: space-between; /* 양 끝으로 벌려서 로고는 왼쪽, 텍스트는 오른쪽 정렬 */
+    align-items: center; /* 로고와 텍스트의 세로 중앙을 맞춤 */
     width: 1280px;
-    margin: 0 auto;
+    margin: 0 auto; /* 푸터 내용을 중앙으로 모음 */
+}
+
+.footer-info {
+    text-align: right; /* 텍스트 자체도 오른쪽 정렬로 맞춤 */
+}
+
+.footer-info li {
+    margin-bottom: 5px; /* 줄 간격 조절 */
 }
