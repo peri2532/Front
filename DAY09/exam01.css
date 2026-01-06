@@ -1,0 +1,43 @@
+.box{
+    width: 100px; height: 100px;
+    background-color: yellow;
+    border: 1px solid red;
+}
+.box2{
+    /* static : HTML 작성 순서대로 배치. 위치 변경 불가*/
+    position: static;
+    left: 50px; /*위치 이동 불가능하다. */
+}
+.box3{
+    /*relative: 본래 위치로 부터 상대 위치, 위치 변경 가능*/
+    position: relative;
+    top :10px;
+    left:10px;
+}
+.bix4{
+    /*absoluter:가장 가까운 position 가진 상위요소의 기준 절대위치*/
+    position: absolute;
+    top: 10px ; left:200px;
+}
+
+.box5{
+    position:  fixed;
+    right: 50px; bottom: 50px;
+}
+.box6{
+    position: absolute;
+    top: 50px; left: 200px;
+}
+
+.header{
+    background-color: beige;
+    /*sticky:만일 화면 밖에서 벗어나면 위치 */
+    position: sticky;
+    top: 0px;
+    z-index: -5; /*겹침 우선순위 5*/
+    /*opacity: 0.5;  투명도 */
+}
+
+.header > ul{
+    display: flex;
+}

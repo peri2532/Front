@@ -1,0 +1,43 @@
+
+a {
+    text-decoration: none; color: black ;
+}
+
+/* [1] 선택자: hover 만일 해당 요소에 마우스를 올렸을때*/
+a:hover{
+    color: red; font-size: 20px;
+}
+/* [2] 선택자: visited 만일 브라우저 내 방문한 적이 있는 링크일 때*/
+a:visited{
+    color: blue ; font-size: 10px;
+}
+/*[3] 선택자: active  만일 해당 요소를 클릭(순간)했을때*/
+a:active{
+    color: yellow; font-size: 30px;
+}
+
+/*[4] 선택자: before*/
+.box1::before{
+    content: "[가상요소 before  구역 ]";
+    color: aqua;
+}
+.box1::after{
+    content: "[가상 요소 after 구역]";
+    color: brown;
+}
+/*[활용1] 글머리*/
+li{list-style-type: none;}
+.box2 > li::before{
+    content: "🥵​";
+    color:red;
+}
+
+/*[활용2] 글머리2*/
+.box2> li::after{
+    content: url("../DAY08/img2/bread1.png");
+}
+
+/* [5]  선택자:nth-of-type(순서번호) 선택자의 요소가 여러개 일때 번호로 선택하기*/
+.box2 >li::nth-of-type(1){
+    color: red;
+}

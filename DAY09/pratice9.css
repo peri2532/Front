@@ -1,0 +1,35 @@
+.parent{
+    background-color: red;
+    width: 700px;height: 450px;
+    position: relative;
+    margin: 0 auto;
+}
+.box{
+    background-color: yellow;
+    width: 100px; height: 70px;
+    border-radius: 10px;
+    position:absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box1{
+    left: 300px; top: 50px;
+}
+
+.box2{
+    left: 150px; top:120px;
+}
+.box3{
+    left: 450px; top:120px;
+}
+.box4{
+    left: 150px; top:260px;
+}
+.box5{
+    left: 450px; top:260px;
+}
+.box6{
+    left: 300px; top:360px;
+}

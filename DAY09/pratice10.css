@@ -1,0 +1,48 @@
+ .parent{
+        background-color: #f4f4f4;
+        width: 700px; height: 700px;
+        position: relative;
+    }
+ .box{
+    border-radius: 50px;
+    color: blue;
+    padding: 10px;
+    margin: 0px auto;
+    width: 50px; height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    display:none;
+ }
+ .parent:hover .box{display: block;}
+ .box1{
+    background-color: #e7f0ff;
+    top: 200px; left: 600px;
+ }
+ .box2{
+    background-color: #e9fff0;
+    top: 300px; left: 600px;
+}
+
+ .box3{
+    background-color: #fff2e9;
+    top: 400px; left: 600px;
+ }
+ .box4{
+    background-color: #f3e9ff;
+    top: 500px; left: 600px;
+ }
+ .plus{
+    background-color: black;
+    color: white;
+      padding: 10px;
+    margin: 0px auto;
+    width: 50px; height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+     border-radius: 50px;
+      top: 600px; left: 600px;
+}
