@@ -1,0 +1,49 @@
+.box {
+    border: 1px solid red;
+    padding: 30px;
+    margin: 30px;
+}
+
+.back1 {
+    background-color: aqua;
+    background-color: #00ffff;
+    background-color: rgd(0, 0, 255);
+    /*rgba (0~255, 0~255, 0~255, 0~1 )*/
+    background-color: rgba(0, 0, 255, 0.5);
+}
+
+/*이미지 삽입할 때 img 대신에 배경으로 가능, 아마자 위에 텍스트 표현할때*/
+.back2 {
+    /* background-image: url("파일경로"); */
+    background-image: url("배경.jpg");
+    /* background-repeat: no-repeat; , 채우기 업음*/
+    background-repeat: no-repeat;
+    /* background-position: center; , 배경 이미지 위치 설정 */
+    background-position: center;
+}
+
+/*  */
+.back3 {
+    background-image: url(패턴.jpg);
+    background-repeat: repeat;
+    /*기본값: 만일 비어있는 공간이 있다면 반복 채움(패턴)  */
+}
+
+.back4 {
+    background-image: url(패턴.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* 비율 유지, 잘림 생길 수 있음 */
+    background-position: center;
+    background-attachment: fixed;
+    /* 스크롤 이동해도 배경이미지는 고정된다. */
+}
+
+.box2 {
+    width: 123px;
+    height: 138px;
+    background-image: url("아이콘들.png");
+    background-repeat: no-repeat;
+    background-position: -11px 0px;
+    /*위치 : left , top*/
+}
