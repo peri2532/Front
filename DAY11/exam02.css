@@ -1,34 +1,42 @@
-/* 만약에 width, height, 생략시 *상위 요소* 크기를 따라진다.*/
-
-.box{
+/* 기본 박스 스타일 */
+.box {
     border: 1px solid red;
-    padding : 10px, margin-bottom: 10px;   ]
+    padding: 10px;        /* 쉼표(,)를 세미콜론(;)으로 수정 */
+    margin-bottom: 10px;  /* ] 오타 제거 */
 }
 
-.size1{
-    width: 200px; , height: 200px;
-};
-
-/*최소 사이즈*/
-.size2{
-    min-width: 600px;
-    /*화면이 600px 보다 크면 100% 작으면 600px 고정*/
+/* [1] 고정 사이즈 */
+.size1 {
+    width: 200px;         /* 속성 사이의 불필요한 기호 제거 */
+    height: 200px;
 }
 
-.size3{
-    min-height: 100px;
-    /*내용의 높이가 100px보다 크면 100%작으면 100%=기준*/
-
+/* [2] 최소 사이즈 */
+.size2 {
+    min-width: 600px;     /* 화면이 600px보다 작아져도 600px 유지 */
 }
-/* [3] 최대 사이즈*/
 
-.size4{max-width:600px;}/*화면이 600px 보다 크면 600px 고정 작으면 100%*/
-.size5{max-height: 100px;} /*내용의 높이가 100px 보다 크면 100px 고정 낮으면 100%*/
+.size3 {
+    min-height: 100px;    /* 내용이 적어도 최소 100px 높이 보장 */
+}
 
-/*[4] 만약에 하위 요소의 컨텐츠/내용이 부모 요소의 크기가 크면/넘치면 */
-.size6{width: 200px; height: 100px; overflow: visible;} /*visible(기본값) 그대로 보여줌*/
-.size7{width: 200px; height: 100px; overflow: hidden;} /*hidden 내용이 넘치면 숨김*/
-.size8{width: 200px; height: 100px; overflow: scroll;} /*scroll 항상 스크롤*/
-.size9{width: 200px; height: 100px; overflow: auto;} /*auto 내용이 넘쳤을때 스크롤*/
-.size10{width: 200px; height: 100px; overflow-y:scroll; overflow-x: hidden;}
- /*overflow-y: 세로축 설정, overflow-x: 가로축 설정*/
+/* [3] 최대 사이즈 */
+.size4 {
+    max-width: 600px;     /* 화면이 넓어져도 600px까지만 커짐 */
+}
+
+.size5 {
+    max-height: 100px;    /* 내용이 많아도 100px까지만 커짐 (넘치면 overflow 필요) */
+}
+
+/* [4] Overflow 설정 - 부모보다 내용이 많을 때 */
+.size6 { width: 200px; height: 100px; overflow: visible; } /* 기본값: 넘친 채로 보여줌 */
+.size7 { width: 200px; height: 100px; overflow: hidden; }  /* 넘친 내용 숨김 */
+.size8 { width: 200px; height: 100px; overflow: scroll; }  /* 항상 스크롤바 표시 */
+.size9 { width: 200px; height: 100px; overflow: auto; }    /* 넘칠 때만 스크롤바 표시 */
+.size10 { 
+    width: 200px; 
+    height: 100px; 
+    overflow-y: scroll; /* 세로 방향 스크롤 */
+    overflow-x: hidden; /* 가로 방향 숨김 */
+}
