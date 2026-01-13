@@ -20,7 +20,7 @@ const numbers = [10, 20, 30, 40, 50];
 function sumArray( array ){ // 매개변수란? 함수호출시 전달되는 인자값 연결되는 변수 
   // 주의할점 : 매개변수도 지역변수 특징으로 함수밖 numbers를 인자 로 전달 하더라도 매개변수랑은 다르다.
   let sum = 0; // 지역변수 
-  for( let i = 0 ; i <= array.length - 1 ; i++ ){ sum += sum+array[i]; } // 모든 합계를 구하는 반복문 끝나고
+  for( let i = 0 ; i <= array.length - 1 ; i++ ){ sum= sum+array[i]; } // 모든 합계를 구하는 반복문 끝나고
   return sum; // 함수가 종료되면서 해당 함수 호출했던 곳으로 반환 
 }
 console.log(  sumArray( numbers ) ) ;

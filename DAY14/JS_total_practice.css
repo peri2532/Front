@@ -1,0 +1,44 @@
+#wrap{
+    width: 960px;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 10px #eeeeee;
+    padding: 50px;
+}
+#header{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 50px 0px;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 50px ;
+    gap: 20px;
+}
+
+.tb{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th,td{
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+}
+.img{
+    width: 100px;
+    height: 100px;
+    background-color: #eee;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.button{
+    cursor: pointer;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.delete{color: red; background-color: rgb(247, 214, 219); border: 1px solid red;}
+.update{color: blue; background-color: rgb(216, 207, 252);border:1px solid blue;}
