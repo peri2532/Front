@@ -1,0 +1,189 @@
+
+body {
+    background-color: #f4f7fa; 
+    font-family: 'Malgun Gothic', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.txt, p {
+    text-align: center;
+
+}
+
+
+#contain {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+    align-items: flex-start;
+}
+
+.dept, .middle_box, .right_box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    min-height: 1000px; 
+}
+.button{
+    display: flex;
+    justify-content: flex-end;
+}
+.button > .btn{
+    background-color: #4f46e5;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    width: 75px;
+    cursor: pointer;
+     height: 38px;
+}
+.dept { flex: 1; max-width: 300px; }
+.middle_box { flex: 2; max-width: 600px; }
+.right_box { flex: 1.5; max-width: 400px; }
+
+h4 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    color: #333;
+}
+.group{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    padding: 10px 0px;
+    gap: 5px;
+}
+#dept_name-input{
+    flex:1;
+    margin-bottom: 0;
+}
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    border-radius: 5px;
+    box-sizing: border-box; 
+}
+.add{
+    display: flex;
+    justify-content: flex-end;
+}
+.add > .btn{
+    background-color: #4f46e5;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    width: 75px;
+    cursor: pointer;
+     height: 38px;
+}
+.row2{
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.row1{
+    display: flex;
+    justify-content: space-between;
+}
+.row {
+    display: flex;
+    gap: 10px;
+}
+.row > div {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+.group > .btn {
+    background-color: #7f56da;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 75px;
+    height: 38px;
+    margin-top: 3px;
+}
+
+.group > .btn:hover {
+    background-color: #6a45c2;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #666;
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.update { color: #7f56da; cursor: pointer; margin-right: 5px; }
+.delete { color: #ff5b5b; cursor: pointer; }
+.list {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.list .top {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.list .mid {
+    font-size: 0.85em;
+    color: #666;
+}
+
+.list .bottom {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 5px;
+}
+
+
+.middle_box .row {
+    display: flex;
+    gap: 15px; 
+    margin-bottom: 15px;
+}
+
+.middle_box .row > div {
+    flex: 1; 
+    display: flex;
+    flex-direction: column; /
+}
+
+#emp_deptId-select, 
+#emp_profileImage-input {
+    width: 150%; 
+    height: 38px;
+    margin-top: 5px;
+}
+#vacation_list_startDate-input,
+#vacation_list_endDate-input {
+    width: 100%;
+}

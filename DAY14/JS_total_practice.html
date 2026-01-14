@@ -1,90 +1,57 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' href='JS_total_practice.css'>
-
+    <link rel='stylesheet' type='text/css' media='screen' href='JS_total_practice.css'>
 </head>
-
 <body>
-    <div class="wrap">
-    <div id="header">
-        <select>
-            <option value="disabled">카테고리 선택하세요.</option>
-            <option value="1">과자</option>
-            <option value="2">음료수</option>
-        </select>
-        <input  placeholder="제품명">
-        <input  placeholder="제품가격">
-        <input type="file">
-        <button class="btn">등록</button>
-    </div>
-    <hr>
-    <div id="main">
-        <table class="tb">
-            <thead>
-                <tr>
-                    <th>이미지</th>
-                    <th>카테고리명</th>
-                    <th>상품명</th>
-                    <th>가격</th>
-                    <th>등록일</th>
-                    <th>비고</th>
-                </tr>
-            </thead>
-            <tbody class="tb">
-                <tr>
-                    <td>
-                        <img src="#" class="img">
-                    </td>
-                    <td>1</td>
-                    <td>코카콜라</td>
-                    <td>1,000</td>
-                    <td>2025-06-17</td>
-                    <div class="btn2">
-                        <td> <button class="delete">삭제</button>
-                            <button class="update">수정</button>
-                        </td>
-                    </div>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="#" class="img">
-                    </td>
-                    <td>2</td>
-                    <td>새우깡</td>
-                    <td>1,200</td>
-                    <td>2025-06-18</td>
-                    <div class="btn2">
-                        <td> <button class="delete">삭제</button>
-                            <button class="update">수정</button>
-                        </td>
-                    </div>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="#" class="img">
-                    </td>
-                    <td>1</td>
-                    <td>칠성사이다</td>
-                    <td>900</td>
-                    <td>2025-06-19</td>
-                    <div class="btn2">
-                        <td>
-                            <button class="delete">삭제</button>
-                            <button class="update">수정</button>
-                        </td>
-                    </div>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    </div>
-    <script src='JS_total_practice.js'></script>
-</body>
 
+    <div id="wrap">
+        <div id="top">
+            <select class="category">
+                <option value="disabled"> 카테고리 선택하세요. </option>
+                <option value="1" > 음료 </option>
+                <option value="2" > 과자 </option>
+            </select>
+            <input class="name" placeholder="제품명" />
+            <input class="price" placeholder="제품가격" />
+            <input class="image" type="file" />
+            <button onclick="productAdd()"> 등록 </button>
+        </div>
+        <div id="main">
+            <table>
+                <thead>
+                    <tr>
+                        <th> 이미지 </th>  <th> 카테고리명 </th> <th> 상품명 </th>
+                        <th> 가격 </th>    <th> 등록일 </th>    <th> 비고 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> <img src="https://placehold.co/100x100"/> </td>
+                        <td> 음료 </td> <td> 코카콜라 </td> <td> 1,000 </td> <td> 2026-01-26 </td> 
+                        <td> 
+                            <button class="deleteBtn">삭제</button> 
+                            <button class="updateBtn">수정</button> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <img src="https://placehold.co/100x100"/> </td>
+                        <td> 음료 </td> <td> 코카콜라 </td> <td> 1,000 </td> <td> 2026-01-26 </td> 
+                        <td> 
+                            <button class="deleteBtn">삭제</button> 
+                            <button class="updateBtn">수정</button> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script src="JS_total_practice.js"> </script>
+
+</body>
 </html>
