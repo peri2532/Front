@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ko">
 <head>
     <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>인사 관리 대시보드</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='Practice8.css'>
-    <script src='Practice8.js'></script>
+    <link rel='stylesheet' type='text/css' href='Practice8.css'>
 </head>
-
 <body>
     <div id="wrap">
         <h1 class="txt">인사 관리 대시보드</h1>
         <p>부서, 사원, 휴가 통합 관리 시스템</p>
+        
         <div id="contain">
             <div class="dept">
                 <h4>부서관리</h4>
@@ -24,65 +21,38 @@
                 <table class="deptName">
                     <thead>
                         <tr>
-                            <th>
-                                부서명
-                            </th>
-                            <th>
-                                관리
-                            </th>
+                            <th>부서명</th>
+                            <th>관리</th>
                         </tr>
                     </thead>
                     <tbody id="dept_list">
-                        <tr>
-                            <td>개발팀</td>
-                            <td><span class="update">수정</span>
-                                <span class="delete">삭제</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>디자인팀</td>
-                            <td><span class="update">수정</span>
-                                <span class="delete">삭제</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>기획팀</td>
-                            <td><span class="update">수정</span>
-                                <span class="delete">삭제</span>
-                            </td>
-                        </tr>
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
+
             <div class="middle_box">
                 <h4>사원등록</h4>
                 <div class="row">
                     <div class="name">
-                        이름
-                        <input id="emp_name-input">
+                        이름 <input id="emp_name-input">
                     </div>
                     <div class="rank">
-                        직급
-                        <input id="emp_rank-input">
+                        직급 <input id="emp_rank-input">
                     </div>
                 </div>
                 <div class="row1">
                     <div>부서
                         <select id="emp_deptId-select">
-                            <option value="disabled">부서를 선택하세요.</option>
-                            <option value="1">개발팀</option>
-                            <option value="2">디자인팀</option>
-                            <option value="3">기획팀</option>
-                        </select>
+                            </select>
                     </div>
-                    <div>
-                        사진
+                    <div>사진
                         <input id="emp_profileImage-input" type="file">
                     </div>
                 </div>
                 <div class="add">
                     <button class="btn" onclick="addEmp()">등록</button>
                 </div>
+
                 <h4>사원 전체 목록</h4>
                 <table class="emplyoee">
                     <thead>
@@ -95,64 +65,21 @@
                         </tr>
                     </thead>
                     <tbody id="emp_list">
-                        <tr>
-                            <td><img src="https://placehold.co/100x100"/></td>
-                            <td>김민준</td>
-                            <td>개발팀</td>
-                            <td>선임 개발자</td>
-                            <td><span class="update">수정</span>
-                                <span class="delete">삭제</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://placehold.co/100x100"/></td>
-                            <td>이서연</td>
-                            <td>디자인팀</td>
-                            <td>수석 디자이너</td>
-                            <td><span class="update">수정</span>
-                                <span class="delete">삭제</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://placehold.co/100x100"/></td>
-                            <td>박도윤</td>
-                            <td>기획팀</td>
-                            <td>팀장</td>
-                            <td><span class="update">수정</span>
-                                <span class="delete">삭제</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://placehold.co/100x100"/></td>
-                            <td>유재석</td>
-                            <td>개발팀</td>
-                            <td>대리</td>
-                            <td><span class="update">수정</span>
-                                <span class="delete">삭제</span>
-                            </td>
-                        </tr>
-
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
+
             <div class="right_box">
                 <h4>사원 휴가 신청</h4>
                 <div class="topArea">신청 사원
-                    <select id="vacationList_nameId-select">
-                        <option value="disabled">휴가 신청 사원을 선택하세요</option>
-                        <option value="1">김민준</option>
-                        <option value="2">이서연</option>
-                        <option value="3">박도윤</option>
-                        <option value="4">유재석</option>
-                    </select>
+                    <select id="vacationList_empId-select">
+                        </select>
                     <div class="row2">
                         <div class="start">
-                            휴가 시작일
-                            <input type="date" id="vacationList_startDate-input">
+                            휴가 시작일 <input type="date" id="vacationList_startDate-input">
                         </div>
                         <div class="end">
-                            휴가 종료일
-                            <input type="date" id="vacationList_endDate-input">
+                            휴가 종료일 <input type="date" id="vacationList_endDate-input">
                         </div>
                     </div>
                     <div>휴가 사유
@@ -165,21 +92,11 @@
                 <div class="bottomArea">
                     <h4>휴가 신청 전체 목록</h4>
                     <div id="vacation_list">
-                        <div class="list">
-                            <div class="top"><span>김민준</span><span>신청취소</span></div>
-                            <div class="mid"><span>2025-08-04 ~ 2025-08-04</span></div>
-                            <div class="bottom"><span>사유: 병원 진료</span></div>
                         </div>
-                        <div class="list">
-                            <div class="top"><span>이서연</span><span>신청취소</span></div>
-                            <div class="mid"><span>2025-08-04 ~ 2025-08-04</span></div>
-                            <div class="bottom"><span>사유: 여름휴가</span></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src='Practice8.js'></script>
 </body>
-
 </html>
