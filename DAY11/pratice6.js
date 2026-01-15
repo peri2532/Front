@@ -15,7 +15,7 @@ console.log(product);
 // { id: 'user1', password: 'pass1', name: '사용자1' },
 // { id: 'user2', password: 'pass2', name: '사용자2' },
 // ];
-let members =[{"id" : id1 , "password" : pass1 , "name" : name1},{"id" : id2 , "password" : pass2 , "name" : name2}]
+const members = [{ id: 'user1', password: 'pass1', name: '사용자1' }, { id: 'user2', password: 'pass2', name: '사용자2' },];
 let 아이디=prompt("아이디 입력: ");
 let 비밀번호=prompt("비밀번호 입력: ");
 let 이름=prompt("이름 입력: ");
@@ -56,7 +56,7 @@ let sum1= 80+95+76;
 let sum2 = scores[0].math + scores[1].math + scores[2].math;
 let sum3 = 0;
 for(let index= 0; index<=scores.length-1 ; index++){
-    sume3 += score[index].math; //index번째의 수학점수를 누적 합계 하기
+    sum3 += scores[index].math; //index번째의 수학점수를 누적 합계 하기
 } // for end
 console.log( sum3 / scores.length); //총합계 / 배열길이 == 요소총개수 == 객체총개수 == 학생총인원
 // 문제 4: 특정 조건을 만족하는 객체 찾기
@@ -82,7 +82,7 @@ for(let index=0; index<=scores.length-1 ; index++){
     } //if end
 }// for end
 if(check == false) { console.log("상품을 찾을 수 없습니다.");}
-console.log(`${products[2]}`);
+console.log(products[2]);
 
 // 문제 5: 객체 배열 필터링하기
 // users 배열에서 isActive가 true인 사용자들만으로 구성된 새로운 배열 activeUsers를 만들고, 이 배열을 콘솔에 출력하시오.
@@ -94,11 +94,11 @@ console.log(`${products[2]}`);
 // ];
 const users = [{ id: 1, name: '유저1', isActive: true },
      { id: 2, name: '유저2', isActive: false },
-      { id: 3, name: '유저3', isActive: true }
+      { id: 3, name: '유저3', isActive: true },
       { id: 4, name: '유저4', isActive: false }
     ];
     const activeUsers = [ ];
-    for(let index=0; index<=scores.length-1 ; index++){
+    for(let index=0; index<=users.length-1 ; index++){
         if(users[index].isActive == true){
             activeUsers.push(users[index]);
         }
@@ -113,7 +113,7 @@ const users = [{ id: 1, name: '유저1', isActive: true },
 // ];
 const movies = [{ title: '인셉션', director: '크리스토퍼 놀란' },{ title: '기생충', director: '봉준호' },{ title: '매트릭스', director: '워쇼스키 자매' }];
 const movieTitles = [ ] ;
-for(let index=0; index<=scores.length-1 ; index++){
+for(let index=0; index<=movies.length-1 ; index++){
     movieTitles.push(movies[index].title);
 }
 console.log(movieTitles);
@@ -137,6 +137,17 @@ console.log(movieTitles);
 { name: '지혜', department: '기획팀' }
 ];
 
+const result = {};
+for (let i=0; i<=team.length-1;i++){
+    const dept = team[i].department;
+    const name = team[i].name;
+
+    if(result[dept] == undefined){
+        result[dept]= [];
+    }
+    result[dept].push(name);
+}
+console.log(result);
 // 문제 8: 장바구니 총액 계산하기
 // 고객의 장바구니 정보를 담은 cart 배열과 상품 정보를 담은 productsInfo 배열이 있습니다.
 // cart 배열: 각 요소는 고객이 담은 상품의 id와 quantity(수량)를 가집니다.
@@ -148,12 +159,43 @@ console.log(movieTitles);
 // { id: 2, price: 5000 }, // 장바구니에 없는 상품
 // { id: 3, price: 2500 }
 // ];
+const cart = [{ id: 1, quantity: 2 }, { id: 3, quantity: 1 }];
+const productsInfo = [
+    { id: 1, price: 1000 },
+    { id: 2, price: 5000 },
+    { id: 3, price: 2500 }
+];
 
+let totalPayment = 0;
+
+for (let i = 0; i < cart.length; i++) {
+    for (let j = 0; j < productsInfo.length; j++) {
+        if (cart[i].id == productsInfo[j].id) {
+            totalPayment += cart[i].quantity * productsInfo[j].price;
+            break;
+        }
+    }
+}
+
+console.log("총 결제 금액: " + totalPayment + "원");
 // 문제 9: 투표 결과 집계하기
 // 다음 votes 배열은 투표 결과를 나타냅니다. 각 후보가 몇 표를 받았는지 집계하여, 후보의 이름이 키이고 득표수가 값인 객체를 만들어 콘솔에 출력하시오.
 // const votes = ['A', 'B', 'B', 'C', 'A', 'B', 'A'];
 // 출력 예시: { A: 3, B: 3, C: 1 }
+const votes = ['A', 'B', 'B', 'C', 'A', 'B', 'A'];
+const voteResult = {};
 
+for (let i = 0; i < votes.length; i++) {
+    const candidate = votes[i];
+
+    if (voteResult[candidate] == undefined) {
+        voteResult[candidate] = 1;
+    } else {
+        voteResult[candidate] = voteResult[candidate] + 1;
+    }
+}
+
+console.log(voteResult);
 // 문제 10: 웹툰 평점 시각화하기
 // webtoons 배열의 데이터를 이용하여, 각 웹툰의 평점을 별(★, ☆)로 시각화하여 HTML에 출력하시오.
 // 조건 1: 평점(rating)은 10점 만점입니다.
@@ -169,7 +211,26 @@ console.log(movieTitles);
  유미의 세포들 ★★★★★★★★★☆
  전지적 독자 시점 ★★★★★★★★★☆
 */
+const webtoons = [
+    { title: '나 혼자만 레벨업', rating: 9.8 },
+    { title: '유미의 세포들', rating: 9.9 },
+    { title: '전지적 독자 시점', rating: 9.7 }
+];
 
+for (let i = 0; i < webtoons.length; i++) {
+    let stars = "";
+    const score = Math.floor(webtoons[i].rating); 
+
+    for (let j = 0; j < score; j++) {
+        stars += "★";
+    }
+
+    for (let k = 0; k < (10 - score); k++) {
+        stars += "☆";
+    }
+
+    document.write(webtoons[i].title + " " + stars + "<br>");
+}
 // 문제11 : 공공데이터 포털 : 인천 부평구 맛집 현황 테이블 만들기
 // [구현 조건]
 // 1. 공공데이터 포털에서 '인천광역시 부평구_맛있는 집(맛집) 현황' 의 open API 신청하여 결과를 복사하여 'response' 변수에 저장하시오.
@@ -186,3 +247,42 @@ console.log(movieTitles);
 // 5. 인증키 설정 ( Encoding , Decoding 순서대로 대입하여 설정 )
 // 6. 인증키 설정 후 'API 목록' 에서 [Open Api 호출] 합니다.
 // 7. **실행 결과(JSON)**를 전체 복사합니다. 
+let response = {
+  "currentCount": 10,
+  "data": [
+    { "소재지": "인천광역시 부평구 안남로417번길 20, 2층 (청천동)", "업소명": "1982삼계정", "업태": "한식", "연번": 1, "전화번호": "032-512-1982", "지정메뉴": "녹두삼계탕" },
+    { "소재지": "인천광역시 부평구 부평대로 301 (청천동,남광센트렉스 111호)", "업소명": "갈비가", "업태": "한식", "연번": 2, "전화번호": "032-363-3787", "지정메뉴": "속초코다리냉면" },
+    { "소재지": "인천광역시 부평구 평천로553,1층(삼산동)", "업소명": "경복궁삼계탕", "업태": "한식", "연번": 3, "전화번호": "032-511-1494", "지정메뉴": "들깨삼계탕" },
+    { "소재지": "인천광역시 부평구 부평대로63번길10-11(부평동)", "업소명": "금강산추어탕", "업태": "한식", "연번": 4, "전화번호": "032-527-8118", "지정메뉴": "추어탕" },
+    { "소재지": "인천광역시 부평구 부평대로87번길 4(부평동)", "업소명": "뉴욕반점", "업태": "중식", "연번": 5, "전화번호": "032-516-4488", "지정메뉴": "삼선짬뽕,찹쌀탕수육" },
+    { "소재지": "인천광역시 부평구 신트리로22번길 15-14 (부평동, 1층 일부)", "업소명": "더히든키친", "업태": "양식", "연번": 6, "전화번호": "032-272-7276", "지정메뉴": "바질페스토파스타" },
+    { "소재지": "인천광역시 부평구 마장로 402(청천동)", "업소명": "덕수갈비", "업태": "한식", "연번": 7, "전화번호": "032-517-4070", "지정메뉴": "왕갈비탕" },
+    { "소재지": "인천광역시 부평구 대정로 93, 웰링턴 1층 103호 (부평동)", "업소명": "동강해물탕", "업태": "한식", "연번": 8, "전화번호": "032-524-9166", "지정메뉴": "해물탕" },
+    { "소재지": "인천광역시 부평구 백범로468번길45(십정동)", "업소명": "동암아구해물탕", "업태": "한식", "연번": 9, "전화번호": "032-435-0233", "지정메뉴": "해물찜,해물탕" },
+    { "소재지": "인천광역시 부평구 부흥로257-7(부평동)", "업소명": "들내음 들깨칼국수", "업태": "한식", "연번": 10, "전화번호": "032-515-4151", "지정메뉴": "팥칼국수" }
+  ]
+};
+
+let tableStr = "<table border='1' style='border-collapse: collapse; width: 100%; text-align: left;'>";
+tableStr += "<thead>";
+tableStr += "  <tr style='background-color: #f2f2f2;'>";
+tableStr += "    <th>업소명</th><th>연번</th><th>소재지</th><th>지정메뉴</th><th>전화번호</th><th>업태</th>";
+tableStr += "  </tr>";
+tableStr += "</thead>";
+tableStr += "<tbody>";
+
+for (let i = 0; i < response.data.length; i++) {
+    let shop = response.data[i]; 
+    tableStr += "<tr>";
+    tableStr += "  <td>" + shop["업소명"] + "</td>";
+    tableStr += "  <td>" + shop["연번"] + "</td>";
+    tableStr += "  <td>" + shop["소재지"] + "</td>";
+    tableStr += "  <td>" + shop["지정메뉴"] + "</td>";
+    tableStr += "  <td>" + shop["전화번호"] + "</td>";
+    tableStr += "  <td>" + shop["업태"] + "</td>";
+    tableStr += "</tr>";
+}
+
+
+tableStr += "</tbody></table>";
+document.write(tableStr);
