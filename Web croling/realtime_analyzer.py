@@ -6,23 +6,69 @@ from bs4 import BeautifulSoup
 import urllib.parse
 from datetime import datetime
 import yfinance as yf
+import re
+import os
 
-# ✅ 1. 모델 로드
+# =========================================================
+# 경로 설정 (모델 파일 안정적 로드용)
+# =========================================================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = BASE_DIR   # 모델 파일들이 현재 폴더(Web croling)에 있음
+
+
+# =========================================================
+# 1. 텍스트 전처리 함수 (train_model.py와 동일)
+# =========================================================
+def simple_preprocess(text):
+    """한글, 영문, 숫자만 유지"""
+    if pd.isna(text):
+        return ""
+    
+    text = re.sub(r'<[^>]+>', '', str(text))
+    text = re.sub(r'[^가-힣a-zA-Z0-9\s]', ' ', text)
+    text = re.sub(r'\s+', ' ', text)
+    
+    return text.strip()
+
+def count_sentiment_keywords(text):
+    """긍정/부정 키워드 개수"""
+    text_lower = str(text).lower()
+    
+    positive_keywords = [
+        '상승', '증가', '성장', '호조', '개선', '확대', '신기록', '최고',
+        '매출증가', '이익증가', '실적개선', '수주', '계약', '협력',
+        '투자', '개발', '출시', '성공', '달성', '돌파', '호실적', '급등'
+    ]
+    
+    negative_keywords = [
+        '하락', '감소', '악화', '부진', '적자', '손실', '위기', '리스크',
+        '지연', '철수', '중단', '실패', '부족', '우려', '하향', '감원',
+        '소송', '제재', '규제', '조사', '적발', '급락', '폭락'
+    ]
+    
+    pos_count = sum(1 for kw in positive_keywords if kw in text_lower)
+    neg_count = sum(1 for kw in negative_keywords if kw in text_lower)
+    
+    return pos_count, neg_count
+
+# =========================================================
+# 2. 모델 로드 및 분석 클래스
+# =========================================================
 class NewsAnalyzer:
     def __init__(self):
-        """학습된 모델 및 전처리기 로드"""
+        """학습된 모델 로드"""
         print("🔧 모델 로딩 중...")
         
         try:
-            self.sentiment_model = joblib.load('sentiment_model.pkl')
-            self.trading_model = joblib.load('trading_model.pkl')
-            self.tfidf_vectorizer = joblib.load('tfidf_vectorizer.pkl')
-            self.trading_vectorizer = joblib.load('trading_vectorizer.pkl')
-            self.preprocessor = joblib.load('text_preprocessor.pkl')
+            self.sentiment_model = joblib.load(os.path.join(MODEL_DIR, 'sentiment_model.pkl'))
+            self.trading_model = joblib.load(os.path.join(MODEL_DIR, 'trading_model.pkl'))
+            self.tfidf_vectorizer = joblib.load(os.path.join(MODEL_DIR, 'tfidf_vectorizer.pkl'))
+            self.trading_vectorizer = joblib.load(os.path.join(MODEL_DIR, 'trading_vectorizer.pkl'))
             
             print("✅ 모델 로딩 완료")
-        except FileNotFoundError:
-            print("❌ 모델 파일이 없습니다! 먼저 학습을 진행하세요.")
+        except FileNotFoundError as e:
+            print(f"❌ 모델 파일이 없습니다: {e}")
+            print("   먼저 train_model.py를 실행하여 모델을 생성하세요.")
             raise
         
         # 티커 매핑
@@ -39,37 +85,39 @@ class NewsAnalyzer:
             "POSCO홀딩스": "005490.KS"
         }
     
+    # -----------------------------------------------------
+    # 뉴스 단건 분석
+    # -----------------------------------------------------
     def analyze_news(self, title, content):
-        """
-        뉴스 기사 분석
+        """뉴스 기사 분석"""
+        combined_text = f"{title} {content}"
+        cleaned = simple_preprocess(combined_text)
+        pos_count, neg_count = count_sentiment_keywords(cleaned)
         
-        Returns:
-            dict: 감성, 신뢰도, 거래신호 등
-        """
-        # 텍스트 전처리
-        combined_text = title + ' ' + content
-        cleaned = self.preprocessor.clean_text(combined_text)
-        keywords = self.preprocessor.extract_keywords(cleaned)
-        pos_count, neg_count = self.preprocessor.add_sentiment_features(cleaned)
-        
-        # 감성 분석
-        X_tfidf = self.tfidf_vectorizer.transform([keywords])
-        X_extra = np.array([[pos_count, neg_count]])
+        # ================= 감성 분석 =================
+        X_tfidf = self.tfidf_vectorizer.transform([cleaned])
+        X_extra = np.array([[pos_count, neg_count, 0]])  # 수익률은 0
         X_sentiment = np.hstack([X_tfidf.toarray(), X_extra])
         
-        sentiment = self.sentiment_model.predict(X_sentiment)[0]
+        sentiment_raw = self.sentiment_model.predict(X_sentiment)[0]
         sentiment_proba = self.sentiment_model.predict_proba(X_sentiment)[0]
         sentiment_confidence = max(sentiment_proba)
         
-        # 거래 신호 예측
-        X_trading_tfidf = self.trading_vectorizer.transform([keywords])
-        # 임시 수익률 (실제론 과거 데이터 사용)
-        X_trading_extra = np.array([[pos_count, neg_count, 0, 0]])
+        # 라벨 매핑 (모델 학습 기준에 맞게 조정 가능)
+        sentiment_map = {0: "부정", 1: "중립", 2: "긍정"}
+        sentiment = sentiment_map.get(sentiment_raw, sentiment_raw)
+        
+        # ================= 거래 신호 =================
+        X_trading_tfidf = self.trading_vectorizer.transform([cleaned])
+        X_trading_extra = np.array([[pos_count, neg_count, 0]])
         X_trading = np.hstack([X_trading_tfidf.toarray(), X_trading_extra])
         
-        trade_signal = self.trading_model.predict(X_trading)[0]
+        trade_raw = self.trading_model.predict(X_trading)[0]
         trade_proba = self.trading_model.predict_proba(X_trading)[0]
         trade_confidence = max(trade_proba)
+        
+        signal_map = {0: "매도", 1: "관망", 2: "매수"}
+        trade_signal = signal_map.get(trade_raw, trade_raw)
         
         return {
             '감성': sentiment,
@@ -81,17 +129,20 @@ class NewsAnalyzer:
             '분석시각': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
     
+    # -----------------------------------------------------
+    # 현재 주가 조회
+    # -----------------------------------------------------
     def get_current_price(self, company):
-        """현재 주가 조회"""
         ticker = self.ticker_map.get(company)
         if not ticker:
             return None
         
         try:
             stock = yf.Ticker(ticker)
-            current_price = stock.info.get('currentPrice', 
-                            stock.info.get('regularMarketPrice', 0))
-            prev_close = stock.info.get('previousClose', 0)
+            info = stock.info
+            
+            current_price = info.get('currentPrice', info.get('regularMarketPrice', 0))
+            prev_close = info.get('previousClose', 0)
             
             if prev_close:
                 change_pct = ((current_price - prev_close) / prev_close) * 100
@@ -105,7 +156,9 @@ class NewsAnalyzer:
         except:
             return None
 
-# ✅ 2. 실시간 뉴스 수집 & 분석
+# =========================================================
+# 3. 실시간 뉴스 수집 & 분석
+# =========================================================
 def collect_and_analyze_latest_news(company, max_news=5):
     """특정 기업의 최신 뉴스 수집 및 분석"""
     
@@ -115,16 +168,14 @@ def collect_and_analyze_latest_news(company, max_news=5):
     
     analyzer = NewsAnalyzer()
     
-    # 현재 주가 정보
+    # 현재 주가
     price_info = analyzer.get_current_price(company)
     if price_info:
         print(f"\n📊 현재 주가: {price_info['현재가']} ({price_info['전일대비']})")
     
-    # 최신 뉴스 검색
-    search_keyword = f"{company} 최신"
-    encoded = urllib.parse.quote(search_keyword)
+    # Google News RSS
+    encoded = urllib.parse.quote(company)
     rss_url = f"https://news.google.com/rss/search?q={encoded}&hl=ko&gl=KR&ceid=KR:ko"
-    
     headers = {"User-Agent": "Mozilla/5.0"}
     
     try:
@@ -143,31 +194,16 @@ def collect_and_analyze_latest_news(company, max_news=5):
             link = item.link.get_text()
             pub_date = item.pubDate.get_text()
             
+            # description (제목 + 첫 문장 전략 유지)
+            description = ""
+            if item.description:
+                desc_soup = BeautifulSoup(item.description.get_text(), 'html.parser')
+                description = desc_soup.get_text(strip=True)[:200]
+            
             print(f"\n📰 [{i}] {title}")
             print(f"    🕐 {pub_date}")
-            print(f"    🔗 {link[:80]}...")
             
-            # 본문 수집 (간단 버전)
-            try:
-                article_res = requests.get(link, headers=headers, timeout=5)
-                article_soup = BeautifulSoup(article_res.text, 'html.parser')
-                
-                # 본문 추출 시도
-                content = ""
-                for selector in ['#dic_area', '.article_body', 'article']:
-                    element = article_soup.select_one(selector)
-                    if element:
-                        content = element.get_text(strip=True)[:1000]
-                        break
-                
-                if not content:
-                    content = title  # 본문 없으면 제목만 사용
-                
-            except:
-                content = title
-            
-            # AI 분석
-            analysis = analyzer.analyze_news(title, content)
+            analysis = analyzer.analyze_news(title, description)
             
             print(f"\n    🤖 AI 분석 결과:")
             print(f"       감성: {analysis['감성']} (신뢰도: {analysis['감성_신뢰도']})")
@@ -176,13 +212,14 @@ def collect_and_analyze_latest_news(company, max_news=5):
             
             results.append({
                 '순번': i,
+                '기업': company,
                 '제목': title,
                 '날짜': pub_date,
                 '링크': link,
                 **analysis
             })
         
-        # 종합 판단
+        # ================= 종합 판단 =================
         print(f"\n{'='*70}")
         print("📊 종합 분석 결과")
         print(f"{'='*70}")
@@ -195,10 +232,12 @@ def collect_and_analyze_latest_news(company, max_news=5):
         print(f"\n감성 분포: {dict(sentiment_counts)}")
         print(f"신호 분포: {dict(signal_counts)}")
         
-        # 최종 추천
-        if '긍정' in sentiment_counts and sentiment_counts['긍정'] >= max_news * 0.6:
+        positive_ratio = sentiment_counts.get('긍정', 0) / len(df)
+        negative_ratio = sentiment_counts.get('부정', 0) / len(df)
+        
+        if positive_ratio >= 0.6:
             final_recommendation = "📈 매수 검토 권장"
-        elif '부정' in sentiment_counts and sentiment_counts['부정'] >= max_news * 0.6:
+        elif negative_ratio >= 0.6:
             final_recommendation = "📉 매도 또는 관망 권장"
         else:
             final_recommendation = "⚖️ 신중한 관망 권장"
@@ -206,10 +245,17 @@ def collect_and_analyze_latest_news(company, max_news=5):
         print(f"\n🎯 최종 추천: {final_recommendation}")
         print(f"{'='*70}")
         
-        # 결과 저장
-        output_file = f"{company}_analysis_{datetime.now().strftime('%Y%m%d_%H%M')}.csv"
-        df.to_csv(output_file, index=False, encoding='utf-8-sig')
-        print(f"\n💾 분석 결과 저장: {output_file}")
+        # ================= 결과 저장 =================
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M')
+        
+        csv_file = f"{company}_analysis_{timestamp}.csv"
+        json_file = f"{company}_analysis_{timestamp}.json"
+        
+        df.to_csv(csv_file, index=False, encoding='utf-8-sig')
+        df.to_json(json_file, orient="records", force_ascii=False, indent=2)
+        
+        print(f"\n💾 CSV 저장:  {csv_file}")
+        print(f"💾 JSON 저장: {json_file}")
         
         return df
         
@@ -217,10 +263,10 @@ def collect_and_analyze_latest_news(company, max_news=5):
         print(f"❌ 오류 발생: {e}")
         return None
 
-# ✅ 3. 멀티 기업 동시 분석
+# =========================================================
+# 4. 멀티 기업 동시 분석
+# =========================================================
 def analyze_multiple_companies(companies, max_news=3):
-    """여러 기업 동시 분석 및 비교"""
-    
     print("🎯 멀티 기업 분석 시작\n")
     
     all_results = {}
@@ -230,7 +276,6 @@ def analyze_multiple_companies(companies, max_news=3):
         if result is not None:
             all_results[company] = result
     
-    # 비교 리포트
     print(f"\n{'='*70}")
     print("📊 기업별 비교 리포트")
     print(f"{'='*70}\n")
@@ -243,10 +288,12 @@ def analyze_multiple_companies(companies, max_news=3):
     
     print(f"{'='*70}")
 
-# ✅ 4. 실행 예시
+# =========================================================
+# 5. 실행
+# =========================================================
 if __name__ == "__main__":
-    # 단일 기업 분석
+    # 단일 기업
     collect_and_analyze_latest_news("삼성전자", max_news=5)
     
-    # 또는 여러 기업 동시 분석
+    # 여러 기업 비교 예시
     # analyze_multiple_companies(["삼성전자", "SK하이닉스", "네이버"], max_news=3)
